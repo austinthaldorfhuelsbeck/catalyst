@@ -1,35 +1,57 @@
-import SectionContainer from "@/components/ui/section-container";
-import { stegaClean } from "next-sanity";
-import Timeline1 from "@/components/blocks/timeline/timeline-1";
-import { PAGE_QUERYResult, ColorVariant } from "@/sanity.types";
+import SectionContainer from '@/components/ui/section-container';
+import { stegaClean } from 'next-sanity';
+import { Timeline, TimelineItem } from '@/components/blocks/timeline';
+
+import {
+  type PAGE_QUERYResult,
+  type Timelines1 as TimelineItemType,
+  ColorVariant,
+} from '@/sanity.types';
 
 type TimelineRow = Extract<
-  NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number],
-  { _type: "timeline-row" }
+  NonNullable<NonNullable<PAGE_QUERYResult>['blocks']>[number],
+  { _type: 'timeline-row' }
 >;
 
-export default function TimelineRow({
-  padding,
-  colorVariant,
-  timelines,
-}: TimelineRow) {
+interface TimelineLayoutProps {
+  items: TimelineItemType[];
+  size?: 'sm' | 'md' | 'lg';
+  animate?: boolean;
+  className?: string;
+}
+
+export default function TimelineRow({ padding, colorVariant, timelines }: TimelineRow) {
+  if (!timelines || timelines.length === 0) return null;
   const color = stegaClean(colorVariant) as ColorVariant;
 
   return (
     <SectionContainer color={color} padding={padding}>
-      {timelines && timelines?.length > 0 && (
-        <div className="max-w-[48rem] mx-auto">
-          {timelines?.map((timeline, index) => (
-            <Timeline1
-              key={index}
-              color={color}
-              tagLine={timeline.tagLine}
-              title={timeline.title}
-              body={timeline.body}
-            />
-          ))}
-        </div>
-      )}
+      <TimelineLayout items={timelines as TimelineItemType[]} size="md" />
     </SectionContainer>
   );
 }
+
+const TimelineLayout = ({ items, size = 'md', animate = true, className }: TimelineLayoutProps) => {
+  return (
+    <Timeline size={size} className={className}>
+      {[...items].reverse().map((item, index) => (
+        <TimelineItem
+          key={index}
+          index={index}
+          tagline={item.tagLine}
+          title={item.title}
+          body={item.body}
+          showConnector={index !== items.length - 1}
+          iconSize={size}
+          initial={animate ? { opacity: 0, y: 20 } : false}
+          animate={animate ? { opacity: 1, y: 0 } : false}
+          transition={{
+            duration: 0.5,
+            delay: index * 0.1,
+            ease: 'easeOut',
+          }}
+        />
+      ))}
+    </Timeline>
+  );
+};
