@@ -1,5 +1,5 @@
-import { groq } from "next-sanity";
-import { bodyQuery } from "./shared/body";
+import { groq } from 'next-sanity';
+import { bodyQuery } from './shared/body';
 
 // @sanity-typegen-ignore
 export const faqsQuery = groq`
@@ -8,6 +8,8 @@ export const faqsQuery = groq`
     _key,
     padding,
     colorVariant,
+    sectionWidth,
+    stackAlign,
     faqs[]->{
       _id,
       title,

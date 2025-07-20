@@ -1,69 +1,60 @@
-import { defineField, defineType } from "sanity";
-import { Captions } from "lucide-react";
-import { STACK_ALIGN, SECTION_WIDTH } from "../shared/layout-variants";
+import { defineField, defineType } from 'sanity';
+import { Captions } from 'lucide-react';
+import { STACK_ALIGN, SECTION_WIDTH } from '../shared/layout-variants';
+import { stylingFields } from '../shared/styling-fields';
 
 export default defineType({
-  name: "cta-1",
-  title: "CTA 1",
-  type: "object",
+  name: 'cta-1',
+  title: 'CTA 1',
+  type: 'object',
   icon: Captions,
+  description: 'A call to action',
+  groups: [
+    {
+      name: 'content',
+      title: 'Content',
+    },
+    {
+      name: 'styling',
+      title: 'Styling',
+    },
+  ],
   fields: [
+    ...stylingFields,
     defineField({
-      name: "padding",
-      type: "section-padding",
+      name: 'tagLine',
+      type: 'string',
+      description: 'Small text above the title',
+      group: 'content',
     }),
     defineField({
-      name: "colorVariant",
-      type: "color-variant",
-      title: "Color Variant",
-      description: "Select a background color variant",
+      name: 'title',
+      type: 'string',
+      description: 'Main text of the call to action',
+      group: 'content',
     }),
     defineField({
-      name: "sectionWidth",
-      type: "string",
-      title: "Section Width",
-      options: {
-        list: SECTION_WIDTH.map(({ title, value }) => ({ title, value })),
-        layout: "radio",
-      },
-      initialValue: "default",
+      name: 'body',
+      type: 'block-content',
+      description: 'Additional body text of the call to action',
+      group: 'content',
     }),
     defineField({
-      name: "stackAlign",
-      type: "string",
-      title: "Stack Layout Alignment",
-      options: {
-        list: STACK_ALIGN.map(({ title, value }) => ({ title, value })),
-        layout: "radio",
-      },
-      initialValue: "left",
-    }),
-    defineField({
-      name: "tagLine",
-      type: "string",
-    }),
-    defineField({
-      name: "title",
-      type: "string",
-    }),
-    defineField({
-      name: "body",
-      type: "block-content",
-    }),
-    defineField({
-      name: "links",
-      type: "array",
-      of: [{ type: "link" }],
+      name: 'links',
+      type: 'array',
+      of: [{ type: 'link' }],
       validation: (rule) => rule.max(2),
+      description: 'Add links to the call to action',
+      group: 'content',
     }),
   ],
   preview: {
     select: {
-      title: "title",
+      title: 'title',
     },
     prepare({ title }) {
       return {
-        title: "CTA 1",
+        title: 'CTA 1',
         subtitle: title,
       };
     },

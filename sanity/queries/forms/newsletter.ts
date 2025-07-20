@@ -1,4 +1,4 @@
-import { groq } from "next-sanity";
+import { groq } from 'next-sanity';
 
 // @sanity-typegen-ignore
 export const formNewsletterQuery = groq`
@@ -7,6 +7,7 @@ export const formNewsletterQuery = groq`
     _key,
     padding,
     colorVariant,
+    sectionWidth,
     stackAlign,
     consentText,
     buttonText,

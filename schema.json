@@ -56,6 +56,40 @@
             ]
           },
           "optional": true
+        },
+        "sectionWidth": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "default"
+              },
+              {
+                "type": "string",
+                "value": "narrow"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "stackAlign": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "left"
+              },
+              {
+                "type": "string",
+                "value": "center"
+              }
+            ]
+          },
+          "optional": true
         }
       }
     }
@@ -113,6 +147,23 @@
               {
                 "type": "string",
                 "value": "muted"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "sectionWidth": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "default"
+              },
+              {
+                "type": "string",
+                "value": "narrow"
               }
             ]
           },
@@ -212,6 +263,40 @@
               {
                 "type": "string",
                 "value": "muted"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "sectionWidth": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "default"
+              },
+              {
+                "type": "string",
+                "value": "narrow"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "stackAlign": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "left"
+              },
+              {
+                "type": "string",
+                "value": "center"
               }
             ]
           },
@@ -317,6 +402,40 @@
               {
                 "type": "string",
                 "value": "muted"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "sectionWidth": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "default"
+              },
+              {
+                "type": "string",
+                "value": "narrow"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "stackAlign": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "left"
+              },
+              {
+                "type": "string",
+                "value": "center"
               }
             ]
           },
@@ -1399,6 +1518,40 @@
           },
           "optional": true
         },
+        "sectionWidth": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "default"
+              },
+              {
+                "type": "string",
+                "value": "narrow"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "stackAlign": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "left"
+              },
+              {
+                "type": "string",
+                "value": "center"
+              }
+            ]
+          },
+          "optional": true
+        },
         "timelines": {
           "type": "objectAttribute",
           "value": {
@@ -1477,6 +1630,40 @@
               {
                 "type": "string",
                 "value": "muted"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "sectionWidth": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "default"
+              },
+              {
+                "type": "string",
+                "value": "narrow"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "stackAlign": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "left"
+              },
+              {
+                "type": "string",
+                "value": "center"
               }
             ]
           },
@@ -1582,6 +1769,40 @@
               {
                 "type": "string",
                 "value": "muted"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "sectionWidth": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "default"
+              },
+              {
+                "type": "string",
+                "value": "narrow"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "stackAlign": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "left"
+              },
+              {
+                "type": "string",
+                "value": "center"
               }
             ]
           },
@@ -1775,6 +1996,40 @@
               {
                 "type": "string",
                 "value": "muted"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "sectionWidth": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "default"
+              },
+              {
+                "type": "string",
+                "value": "narrow"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "stackAlign": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "left"
+              },
+              {
+                "type": "string",
+                "value": "center"
               }
             ]
           },
@@ -3686,6 +3941,40 @@
               {
                 "type": "string",
                 "value": "muted"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "sectionWidth": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "default"
+              },
+              {
+                "type": "string",
+                "value": "narrow"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "stackAlign": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "left"
+              },
+              {
+                "type": "string",
+                "value": "center"
               }
             ]
           },

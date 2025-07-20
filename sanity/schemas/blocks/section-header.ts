@@ -1,64 +1,52 @@
-import { defineField, defineType } from "sanity";
-import { LetterText } from "lucide-react";
-import { STACK_ALIGN, SECTION_WIDTH } from "./shared/layout-variants";
+import { defineField, defineType } from 'sanity';
+import { LetterText } from 'lucide-react';
+import { STACK_ALIGN, SECTION_WIDTH } from './shared/layout-variants';
+import { stylingFields } from './shared/styling-fields';
 
 export default defineType({
-  name: "section-header",
-  type: "object",
-  title: "Section Header",
-  description: "A section header with a tag line, title, and description",
+  name: 'section-header',
+  title: 'Section Header',
+  type: 'object',
   icon: LetterText,
+  description: 'A section header with a tag line, title, and description',
+  groups: [
+    {
+      name: 'content',
+      title: 'Content',
+    },
+    {
+      name: 'styling',
+      title: 'Styling',
+    },
+  ],
   fields: [
+    ...stylingFields,
     defineField({
-      name: "padding",
-      type: "section-padding",
+      name: 'tagLine',
+      type: 'string',
+      description: 'Small text above the title',
+      group: 'content',
     }),
     defineField({
-      name: "colorVariant",
-      type: "color-variant",
-      title: "Color Variant",
-      description: "Select a background color variant",
+      name: 'title',
+      type: 'string',
+      description: 'Main text of the section header',
+      group: 'content',
     }),
     defineField({
-      name: "sectionWidth",
-      type: "string",
-      title: "Section Width",
-      options: {
-        list: SECTION_WIDTH.map(({ title, value }) => ({ title, value })),
-        layout: "radio",
-      },
-      initialValue: "default",
-    }),
-    defineField({
-      name: "stackAlign",
-      type: "string",
-      title: "Stack Layout Alignment",
-      options: {
-        list: STACK_ALIGN.map(({ title, value }) => ({ title, value })),
-        layout: "radio",
-      },
-      initialValue: "left",
-    }),
-    defineField({
-      name: "tagLine",
-      type: "string",
-    }),
-    defineField({
-      name: "title",
-      type: "string",
-    }),
-    defineField({
-      name: "description",
-      type: "text",
+      name: 'description',
+      type: 'text',
+      description: 'Additional text of the section header',
+      group: 'content',
     }),
   ],
   preview: {
     select: {
-      title: "title",
+      title: 'title',
     },
     prepare({ title }) {
       return {
-        title: "Section Header",
+        title: 'Section Header',
         subtitle: title,
       };
     },

@@ -1,5 +1,5 @@
-import { groq } from "next-sanity";
-import { imageQuery } from "../shared/image";
+import { groq } from 'next-sanity';
+import { imageQuery } from '../shared/image';
 
 // @sanity-typegen-ignore
 export const carousel1Query = groq`
@@ -8,6 +8,8 @@ export const carousel1Query = groq`
     _key,
     padding,
     colorVariant,
+    sectionWidth,
+    stackAlign,
     size,
     orientation,
     indicators,
