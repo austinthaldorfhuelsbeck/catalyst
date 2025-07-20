@@ -1,31 +1,28 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
-import { urlFor } from "@/sanity/lib/image";
-import { stegaClean } from "next-sanity";
-import PortableTextRenderer from "@/components/portable-text-renderer";
-import { PAGE_QUERYResult } from "@/sanity.types";
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/image';
+import { stegaClean } from 'next-sanity';
+import PortableTextRenderer from '@/components/portable-text-renderer';
+import { PAGE_QUERYResult } from '@/sanity.types';
+import TagLine from '@/components/ui/tag-line';
 
 type Hero1Props = Extract<
-  NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number],
-  { _type: "hero-1" }
+  NonNullable<NonNullable<PAGE_QUERYResult>['blocks']>[number],
+  { _type: 'hero-1' }
 >;
 
-export default function Hero1({
-  tagLine,
-  title,
-  body,
-  image,
-  links,
-}: Hero1Props) {
+export default function Hero1({ tagLine, title, body, image, links }: Hero1Props) {
   return (
     <div className="container dark:bg-background py-20 lg:pt-40">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <div className="flex flex-col justify-center">
           {tagLine && (
-            <h1 className="leading-[0] font-sans animate-fade-up [animation-delay:100ms] opacity-0">
-              <span className="text-base font-semibold">{tagLine}</span>
-            </h1>
+            <TagLine
+              title={tagLine}
+              element="h1"
+              className="animate-fade-up [animation-delay:100ms] opacity-0"
+            />
           )}
           {title && (
             <h2 className="mt-6 font-bold leading-[1.1] text-4xl md:text-5xl lg:text-6xl animate-fade-up [animation-delay:200ms] opacity-0">
@@ -40,15 +37,11 @@ export default function Hero1({
           {links && links.length > 0 && (
             <div className="mt-10 flex flex-wrap gap-4 animate-fade-up [animation-delay:400ms] opacity-0">
               {links.map((link) => (
-                <Button
-                  key={link.title}
-                  variant={stegaClean(link?.buttonVariant)}
-                  asChild
-                >
+                <Button key={link.title} variant={stegaClean(link?.buttonVariant)} asChild>
                   <Link
-                    href={link.href || "#"}
-                    target={link.target ? "_blank" : undefined}
-                    rel={link.target ? "noopener" : undefined}
+                    href={link.href || '#'}
+                    target={link.target ? '_blank' : undefined}
+                    rel={link.target ? 'noopener' : undefined}
                   >
                     {link.title}
                   </Link>
@@ -60,13 +53,13 @@ export default function Hero1({
         <div className="flex flex-col justify-center">
           {image && image.asset?._id && (
             <Image
-              className="rounded-xl animate-fade-up [animation-delay:500ms] opacity-0"
+              className="rounded-lg animate-fade-up [animation-delay:500ms] opacity-0"
               src={urlFor(image).url()}
-              alt={image.alt || ""}
+              alt={image.alt || ''}
               width={image.asset?.metadata?.dimensions?.width || 800}
               height={image.asset?.metadata?.dimensions?.height || 800}
-              placeholder={image?.asset?.metadata?.lqip ? "blur" : undefined}
-              blurDataURL={image?.asset?.metadata?.lqip || ""}
+              placeholder={image?.asset?.metadata?.lqip ? 'blur' : undefined}
+              blurDataURL={image?.asset?.metadata?.lqip || ''}
               quality={100}
             />
           )}

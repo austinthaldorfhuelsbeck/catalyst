@@ -1,6 +1,6 @@
-import { groq } from "next-sanity";
-import { imageQuery } from "./shared/image";
-import { bodyQuery } from "./shared/body";
+import { groq } from 'next-sanity';
+import { imageQuery } from './shared/image';
+import { bodyQuery } from './shared/body';
 
 export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
     title,
@@ -55,6 +55,10 @@ export const POSTS_QUERY = groq`*[_type == "post" && defined(slug)] | order(_cre
     excerpt,
     image{
       ${imageQuery}
+    },
+    categories[]->{
+      _id,
+      title,
     },
 }`;
 

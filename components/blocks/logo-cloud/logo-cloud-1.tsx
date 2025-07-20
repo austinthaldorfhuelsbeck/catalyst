@@ -1,33 +1,24 @@
-"use client";
-import SectionContainer from "@/components/ui/section-container";
-import { stegaClean } from "next-sanity";
-import Image from "next/image";
-import { urlFor } from "@/sanity/lib/image";
-import { Fragment } from "react";
-import { motion } from "motion/react";
-import { PAGE_QUERYResult } from "@/sanity.types";
+'use client';
+import SectionContainer from '@/components/ui/section-container';
+import { stegaClean } from 'next-sanity';
+import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/image';
+import { Fragment } from 'react';
+import { motion } from 'motion/react';
+import { PAGE_QUERYResult } from '@/sanity.types';
 
 type LogoCloud1Props = Extract<
-  NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number],
-  { _type: "logo-cloud-1" }
+  NonNullable<NonNullable<PAGE_QUERYResult>['blocks']>[number],
+  { _type: 'logo-cloud-1' }
 >;
 
-export default function LogoCloud1({
-  padding,
-  colorVariant,
-  title,
-  images,
-}: LogoCloud1Props) {
+export default function LogoCloud1({ padding, colorVariant, title, images }: LogoCloud1Props) {
   const color = stegaClean(colorVariant);
 
   return (
-    <SectionContainer
-      color={color}
-      padding={padding}
-      className="overflow-hidden"
-    >
+    <SectionContainer color={color} padding={padding} className="overflow-hidden">
       {title && (
-        <h2 className="text-lg font-medium tracking-tighter text-center mb-4 animate-fade-up [animation-delay:100ms] opacity-0">
+        <h2 className="text-lg font-medium font-sans text-center mb-4 animate-fade-up [animation-delay:100ms] opacity-0">
           {title}
         </h2>
       )}
@@ -35,11 +26,11 @@ export default function LogoCloud1({
         <motion.div
           transition={{
             duration: 20,
-            ease: "linear",
+            ease: 'linear',
             repeat: Infinity,
           }}
           animate={{
-            x: ["0%", "-50%"],
+            x: ['0%', '-50%'],
           }}
           className="flex w-max gap-24 pr-24"
         >
@@ -52,15 +43,14 @@ export default function LogoCloud1({
                 >
                   <Image
                     src={urlFor(image).url()}
-                    alt={image.alt || ""}
+                    alt={image.alt || ''}
                     priority={arrayIndex === 0 && index < 3}
                     placeholder={
-                      image?.asset?.metadata?.lqip &&
-                      image?.asset?.mimeType !== "image/svg+xml"
-                        ? "blur"
+                      image?.asset?.metadata?.lqip && image?.asset?.mimeType !== 'image/svg+xml'
+                        ? 'blur'
                         : undefined
                     }
-                    blurDataURL={image?.asset?.metadata?.lqip || ""}
+                    blurDataURL={image?.asset?.metadata?.lqip || ''}
                     width={image.asset?.metadata?.dimensions?.width || 220}
                     height={image?.asset?.metadata?.dimensions?.height || 90}
                   />

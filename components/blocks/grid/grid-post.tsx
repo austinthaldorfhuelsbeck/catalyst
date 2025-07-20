@@ -1,17 +1,19 @@
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import Image from "next/image";
-import { urlFor } from "@/sanity/lib/image";
-import { ChevronRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { PAGE_QUERYResult, ColorVariant } from "@/sanity.types";
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/image';
+import { ChevronRight } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { PAGE_QUERYResult, ColorVariant } from '@/sanity.types';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
-type Block = NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number];
-type GridRow = Extract<Block, { _type: "grid-row" }>;
-type GridColumn = NonNullable<NonNullable<GridRow["columns"]>>[number];
-type GridPost = Extract<GridColumn, { _type: "grid-post" }>;
+type Block = NonNullable<NonNullable<PAGE_QUERYResult>['blocks']>[number];
+type GridRow = Extract<Block, { _type: 'grid-row' }>;
+type GridColumn = NonNullable<NonNullable<GridRow['columns']>>[number];
+type GridPost = Extract<GridColumn, { _type: 'grid-post' }>;
 
-interface GridPostProps extends Omit<NonNullable<GridPost>, "_type" | "_key"> {
+interface GridPostProps extends Omit<NonNullable<GridPost>, '_type' | '_key'> {
   color?: ColorVariant;
 }
 
@@ -21,30 +23,19 @@ export default function GridPost({ color, post }: GridPostProps) {
   const { title, slug, excerpt, image, categories } = post;
 
   return (
-    <Link
-      key={title}
-      className="flex w-full rounded-3xl ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 group"
-      href={`/blog/${slug?.current}`}
-    >
-      <div
-        className={cn(
-          "flex w-full flex-col justify-between overflow-hidden transition ease-in-out group border rounded-3xl p-4 hover:border-primary",
-          color === "primary"
-            ? "group-hover:border-primary-foreground/50"
-            : "group-hover:border-primary"
-        )}
-      >
-        <div className="flex flex-col">
+    <Link key={title} className="inline-flex group" href={`/blog/${slug?.current}`}>
+      <Card className="flex flex-col justify-between group-hover:border-primary">
+        <CardHeader>
           {image && image.asset?._id && (
-            <div className="mb-4 relative h-[15rem] sm:h-[20rem] md:h-[25rem] lg:h-[9.5rem] xl:h-[12rem] rounded-2xl overflow-hidden">
+            <div className="mb-4 relative h-[15rem] sm:h-[20rem] md:h-[25rem] lg:h-[9.5rem] xl:h-[12rem] rounded-lg overflow-hidden">
               <Image
                 src={urlFor(image).url()}
-                alt={image.alt || ""}
-                placeholder={image?.asset?.metadata?.lqip ? "blur" : undefined}
-                blurDataURL={image?.asset?.metadata?.lqip || ""}
+                alt={image.alt || ''}
+                placeholder={image?.asset?.metadata?.lqip ? 'blur' : undefined}
+                blurDataURL={image?.asset?.metadata?.lqip || ''}
                 fill
                 style={{
-                  objectFit: "cover",
+                  objectFit: 'cover',
                 }}
                 sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                 quality={100}
@@ -53,7 +44,7 @@ export default function GridPost({ color, post }: GridPostProps) {
           )}
           {title && (
             <div className="flex justify-between items-center mb-4">
-              <h3 className="font-bold text-[1.5rem] leading-[1.2]">{title}</h3>
+              <CardTitle className="text-2xl">{title}</CardTitle>
             </div>
           )}
           {categories && categories.length > 0 && (
@@ -65,15 +56,14 @@ export default function GridPost({ color, post }: GridPostProps) {
               ))}
             </div>
           )}
-          {excerpt && <p>{excerpt}</p>}
-        </div>
-        <div className="mt-3 xl:mt-6 w-10 h-10 border rounded-full flex items-center justify-center group-hover:border-primary">
-          <ChevronRight
-            className="text-border group-hover:text-primary"
-            size={24}
-          />
-        </div>
-      </div>
+        </CardHeader>
+        <CardContent className="mb-auto">{excerpt && <p>{excerpt}</p>}</CardContent>
+        <CardFooter className="mt-3 xl:mt-6">
+          <Button size="icon" variant="outline">
+            <ChevronRight className="text-border group-hover:text-primary" size={24} />
+          </Button>
+        </CardFooter>
+      </Card>
     </Link>
   );
 }
