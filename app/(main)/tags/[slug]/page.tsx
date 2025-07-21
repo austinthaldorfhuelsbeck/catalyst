@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation';
 import PortableTextRenderer from '@/components/portable-text-renderer';
 import Breadcrumbs from '@/components/ui/breadcrumbs';
 import TagHero from '@/components/blocks/tag-hero';
+import GridPost from '@/components/blocks/grid/grid-post';
 
 export async function generateStaticParams() {
   const tags = await fetchSanityTagsStaticParams();
@@ -61,6 +62,17 @@ export default async function TagPage(props: { params: Promise<{ slug: string }>
           <Breadcrumbs links={links} />
           <TagHero {...tag} />
           {tag.body && <PortableTextRenderer value={tag.body} />}
+          <hr className="my-4 md:my-6 border-primary/30" />
+          {tag.posts && tag.posts.length > 0 && (
+            <>
+              <h2 className="py-4 lg:py-8">Tagged posts</h2>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {tag.posts.map((post) => (
+                  <GridPost key={post?.slug?.current} post={post} />
+                ))}
+              </div>
+            </>
+          )}
         </article>
       </div>
     </section>

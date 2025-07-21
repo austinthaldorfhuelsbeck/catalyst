@@ -3,6 +3,7 @@ import { imageQuery } from './shared/image';
 import { bodyQuery } from './shared/body';
 
 export const TAG_QUERY = groq`*[_type == "tag" && slug.current == $slug][0]{
+    _id,
     title,
     slug,
     color,
@@ -15,10 +16,30 @@ export const TAG_QUERY = groq`*[_type == "tag" && slug.current == $slug][0]{
     ogImage{
       ${imageQuery}
     },
+    "posts": *[_type == "post" && references(^._id)]{
+      _id,
+      title,
+      slug,
+      excerpt,
+      author->{
+        name,
+        slug
+      },
+      image{
+        ${imageQuery}
+      },
+      tags[]->{
+        _id,
+        title,
+        slug,
+        color
+      }
+    }
   }
 `;
 
 export const TAGS_QUERY = groq`*[_type == "tag" && defined(slug)]{
+  _id,
   title,
   slug,
   color,

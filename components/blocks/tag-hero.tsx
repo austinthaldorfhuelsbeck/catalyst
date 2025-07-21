@@ -12,8 +12,6 @@ export default function TagHero({ title, color, body }: TagHeroProps) {
           <h1>{title}</h1>
         </Badge>
       )}
-      {body && <PortableTextRenderer value={body} />}
-      <hr className="my-4 md:my-6 border-primary/30" />
     </div>
   );
 }
