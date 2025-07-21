@@ -59,6 +59,8 @@ export const POSTS_QUERY = groq`*[_type == "post" && defined(slug)] | order(_cre
     tags[]->{
       _id,
       title,
+      slug,
+      color,
     },
 }`;
 

@@ -1,4 +1,3 @@
-import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
@@ -7,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { PAGE_QUERYResult, ColorVariant } from '@/sanity.types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import Tag from '@/components/ui/tag';
 
 type Block = NonNullable<NonNullable<PAGE_QUERYResult>['blocks']>[number];
 type GridRow = Extract<Block, { _type: 'grid-row' }>;
@@ -23,10 +23,10 @@ export default function GridPost({ color, post }: GridPostProps) {
   const { title, slug, excerpt, image, tags } = post;
 
   return (
-    <Link key={title} className="inline-flex group" href={`/blog/${slug?.current}`}>
-      <Card className="flex flex-col justify-between group-hover:border-primary">
-        <CardHeader>
-          {image && image.asset?._id && (
+    <Card className="flex flex-col justify-between hover:border-primary">
+      <CardHeader>
+        {image && image.asset?._id && (
+          <Link href={`/blog/${slug?.current}`}>
             <div className="mb-4 relative h-[15rem] sm:h-[20rem] md:h-[25rem] lg:h-[9.5rem] xl:h-[12rem] rounded-lg overflow-hidden">
               <Image
                 src={urlFor(image).url()}
@@ -41,29 +41,30 @@ export default function GridPost({ color, post }: GridPostProps) {
                 quality={100}
               />
             </div>
-          )}
-          {title && (
-            <div className="flex justify-between items-center mb-4">
-              <CardTitle className="text-2xl">{title}</CardTitle>
-            </div>
-          )}
-          {tags && tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-4">
-              {tags.map((tag) => (
-                <Badge key={tag._id} color="primary">
-                  {tag.title}
-                </Badge>
-              ))}
-            </div>
-          )}
-        </CardHeader>
-        <CardContent className="mb-auto">{excerpt && <p>{excerpt}</p>}</CardContent>
-        <CardFooter className="mt-3 xl:mt-6">
-          <Button size="icon" variant="outline">
+          </Link>
+        )}
+        {title && (
+          <Link href={`/blog/${slug?.current}`}>
+            <CardTitle className="text-2xl mb-2">{title}</CardTitle>
+          </Link>
+        )}
+        {tags && tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-2">
+            {tags.map((tag) => (
+              <Tag key={tag._id} {...tag} />
+            ))}
+          </div>
+        )}
+      </CardHeader>
+      <CardContent className="mb-auto">{excerpt && <p>{excerpt}</p>}</CardContent>
+      <CardFooter className="mt-3 xl:mt-6">
+        <Link href={`/blog/${slug?.current}`}>
+          <Button size="sm" variant="outline">
+            Read more
             <ChevronRight className="text-border group-hover:text-primary" size={24} />
           </Button>
-        </CardFooter>
-      </Card>
-    </Link>
+        </Link>
+      </CardFooter>
+    </Card>
   );
 }

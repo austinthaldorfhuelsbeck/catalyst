@@ -16,6 +16,8 @@ export const gridPostQuery = groq`
       tags[]->{
         _id,
         title,
+        slug,
+        color,
       },
     },
   }

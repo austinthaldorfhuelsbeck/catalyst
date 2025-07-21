@@ -1,27 +1,23 @@
-import Image from "next/image";
-import PostDate from "@/components/post-date";
-import { Mail } from "lucide-react";
-import { urlFor } from "@/sanity/lib/image";
-import { POST_QUERYResult } from "@/sanity.types";
+import Image from 'next/image';
+import PostDate from '@/components/post-date';
+import { Label } from '@/components/ui/label';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Mail } from 'lucide-react';
+import { urlFor } from '@/sanity/lib/image';
+import { POST_QUERYResult } from '@/sanity.types';
 
 type PostHeroProps = NonNullable<POST_QUERYResult>;
 
-export default function PostHero({
-  title,
-  author,
-  image,
-  slug,
-  _createdAt,
-}: PostHeroProps) {
+export default function PostHero({ title, author, image, slug, _createdAt }: PostHeroProps) {
   return (
     <>
       {title && <h1 className="mb-4 md:mb-6 text-3xl lg:text-5xl">{title}</h1>}
       {image && image.asset?._id && (
-        <div className="my-4 md:my-6 rounded-2xl overflow-hidden">
+        <div className="my-4 md:my-6 rounded-lg overflow-hidden">
           <Image
             src={urlFor(image).quality(100).url()}
-            alt={image.alt || ""}
-            placeholder={image?.asset?.metadata?.lqip ? "blur" : undefined}
+            alt={image.alt || ''}
+            placeholder={image?.asset?.metadata?.lqip ? 'blur' : undefined}
             blurDataURL={image.asset?.metadata?.lqip || undefined}
             width={image.asset?.metadata?.dimensions?.width || 1200}
             height={image?.asset?.metadata?.dimensions?.height || 630}
@@ -32,32 +28,18 @@ export default function PostHero({
       <div className="flex items-center justify-between gap-2 text-sm md:text-base">
         <div className="flex flex-col md:flex-row md:items-center gap-2">
           <div className="flex items-center gap-2">
-            {author?.image && author.image.asset?._id && (
-              <div className="relative w-6 h-6 md:w-10 md:h-10">
-                <Image
-                  src={urlFor(author.image).url()}
-                  alt={author.image.alt ? author.image.alt : ""}
-                  fill
-                  style={{
-                    objectFit: "cover",
-                  }}
-                  placeholder={
-                    author.image.asset?.metadata?.lqip ? "blur" : undefined
-                  }
-                  blurDataURL={author.image.asset?.metadata?.lqip || undefined}
-                  sizes="40px"
-                  className="w-10 h-10 rounded-full mr-2"
-                />
-              </div>
-            )}
-            {author?.name && <div>{author.name}</div>}
+            <Avatar id="author-avatar" className="mr-2">
+              <AvatarImage src={urlFor(author?.image ?? '').url()} alt={author?.image?.alt ?? ''} />
+              <AvatarFallback>{(author?.name ?? 'UI').slice(0, 2)}</AvatarFallback>
+            </Avatar>
+            {author?.name && <Label htmlFor="author-avatar">{author.name}</Label>}
             <div className="hidden md:block">•</div>
           </div>
           <PostDate date={_createdAt as string} />
         </div>
-        <div className="flex flex-col md:flex-row gap-2">
-          <div>Share this post</div>
-          <div className="flex gap-2">
+        <div className="flex flex-col md:flex-row md:items-center gap-2">
+          <Label htmlFor="share-post">Share this post</Label>
+          <div className="flex gap-2" id="share-post">
             <a
               className="hover:opacity-70"
               href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug?.current}`}
