@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity';
 import { orderRankField } from '@sanity/orderable-document-list';
 import { Tag } from 'lucide-react';
+import { metaFields } from '../blocks/shared/meta-fields';
 
 export default defineType({
   name: 'tag',
@@ -17,8 +18,8 @@ export default defineType({
       title: 'Settings',
     },
     {
-      name: 'seo',
-      title: 'SEO',
+      name: 'meta',
+      title: 'Metadata',
     },
   ],
   fields: [
@@ -57,31 +58,7 @@ export default defineType({
       description: 'Additional body text of the tag for the details page',
       group: 'content',
     }),
-    defineField({
-      name: 'meta_title',
-      title: 'Meta Title',
-      type: 'string',
-      group: 'seo',
-    }),
-    defineField({
-      name: 'meta_description',
-      title: 'Meta Description',
-      type: 'text',
-      group: 'seo',
-    }),
-    defineField({
-      name: 'ogImage',
-      title: 'Open Graph Image - [1200x630]',
-      type: 'image',
-      group: 'seo',
-    }),
-    defineField({
-      name: 'noindex',
-      title: 'No Index',
-      type: 'boolean',
-      initialValue: false,
-      group: 'seo',
-    }),
+    ...metaFields,
     orderRankField({ type: 'tag' }),
   ],
 

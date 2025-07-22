@@ -1078,6 +1078,7 @@ export type Tag = {
   body?: BlockContent;
   meta_title?: string;
   meta_description?: string;
+  noindex?: boolean;
   ogImage?: {
     asset?: {
       _ref: string;
@@ -1090,7 +1091,6 @@ export type Tag = {
     crop?: SanityImageCrop;
     _type: 'image';
   };
-  noindex?: boolean;
   orderRank?: string;
 };
 
@@ -1239,6 +1239,21 @@ export type Author = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    _type: 'image';
+  };
+  meta_title?: string;
+  meta_description?: string;
+  noindex?: boolean;
+  ogImage?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
     _type: 'image';
   };
   orderRank?: string;
