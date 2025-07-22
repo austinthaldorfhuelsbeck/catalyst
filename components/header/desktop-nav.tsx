@@ -31,7 +31,6 @@ function NavItem({ title, page, hideFromHeader, subMenu }: SanityNavItem) {
 
   const hasSubMenu = subMenu && subMenu.length > 0;
   const titleToDisplay = page?.title || title;
-  const navigationStyle = navigationMenuTriggerStyle();
 
   if (hasSubMenu) {
     return (
@@ -63,7 +62,7 @@ function NavItem({ title, page, hideFromHeader, subMenu }: SanityNavItem) {
   return (
     <NavigationMenuItem>
       <NavigationMenuLink asChild>
-        <a className={cn(navigationStyle)} href={`/${page?.slug?.current || ''}`}>
+        <a className={cn(navigationMenuTriggerStyle())} href={`/${page?.slug?.current || ''}`}>
           {titleToDisplay}
         </a>
       </NavigationMenuLink>
