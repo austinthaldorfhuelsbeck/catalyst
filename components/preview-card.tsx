@@ -21,11 +21,11 @@ export default function PreviewCard({
   const href = `${pluralize(_type)}/${slug?.current}`;
 
   return (
-    <Card className="mx-5 flex flex-col md:flex-row">
-      <div className="flex-1 border-b-8 md:border-r-8 md:border-b-0 border-muted">
+    <Card className="flex flex-col md:flex-row hover:border-primary group">
+      <div className="flex-1 border-b-8 md:border-r-8 md:border-b-0">
         <CardHeader className="items-start test-left">
           <Link href={href}>
-            <CardTitle className="font-bold text-secondary">{title}</CardTitle>
+            <CardTitle className="font-bold text-lg">{title}</CardTitle>
           </Link>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
@@ -47,7 +47,7 @@ export default function PreviewCard({
       </div>
       <aside className="flex-1 min-h-64 relative overflow-hidden group">
         {image && (
-          <div className="absolute inset-0 transition-transform group-hover:scale-110">
+          <div className="absolute inset-0 group-hover:scale-110">
             <Link href={href} className="block h-full">
               <Image
                 src={urlFor(image).url()}
