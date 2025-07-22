@@ -11,5 +11,6 @@ export const imageQuery = `
         height
       }
     }
-  }
+  },
+  alt
 `;

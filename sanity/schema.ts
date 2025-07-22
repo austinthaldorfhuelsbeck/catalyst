@@ -41,6 +41,7 @@ import newsletter from './schemas/blocks/forms/newsletter';
 import allPosts from './schemas/blocks/all-posts';
 import navItem from './schemas/blocks/navigation/nav-item';
 import allTags from './schemas/blocks/all-tags';
+import featuredPost from './schemas/blocks/featured-post';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -85,5 +86,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     allPosts,
     allTags,
     navItem,
+    featuredPost,
   ],
 };

@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 
 type TagProps = Omit<
   NonNullable<TAG_QUERYResult>,
-  'body' | 'meta_title' | 'meta_description' | 'ogImage' | 'noindex'
+  'body' | 'posts' | 'meta_title' | 'meta_description' | 'ogImage' | 'noindex'
 >;
 
 export default function Tag({ title, color, slug }: TagProps) {

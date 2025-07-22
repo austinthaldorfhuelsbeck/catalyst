@@ -3,6 +3,8 @@ import { imageQuery } from './shared/image';
 import { bodyQuery } from './shared/body';
 
 export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
+    _id,
+    _type,
     title,
     slug,
     image{
@@ -11,6 +13,7 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
     body[]{
       ${bodyQuery}
     },
+    excerpt,
     author->{
       name,
       image {
@@ -29,6 +32,12 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
         },
         alt
       }
+    },
+    tags[]->{
+      _id,
+      title,
+      slug,
+      color,
     },
     _createdAt,
     _updatedAt,

@@ -53,6 +53,7 @@ export default defineType({
         { type: 'form-newsletter' },
         { type: 'all-posts' },
         { type: 'all-tags' },
+        { type: 'featured-post' },
       ],
       options: {
         insertMenu: {

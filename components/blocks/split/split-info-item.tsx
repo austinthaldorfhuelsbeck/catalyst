@@ -28,7 +28,7 @@ export default function SplitCardsItem({ image, title, body, tags }: SplitInfoIt
       <Card className={cn(isInView ? 'bg-primary' : '')}>
         <div
           className={cn(
-            'flex flex-col gap-4 transition-colors duration-1000 ease-in-out',
+            'flex flex-col gap-4 transition-colors',
             isInView ? 'text-primary-foreground' : 'text-foreground',
           )}
         >
@@ -60,7 +60,7 @@ export default function SplitCardsItem({ image, title, body, tags }: SplitInfoIt
         {tags && (
           <CardFooter
             className={cn(
-              'flex flex-wrap gap-3 mt-4 transition-colors duration-1000 ease-in-out',
+              'flex flex-wrap gap-3 mt-4 transition-colors',
               isInView ? 'text-primary-foreground' : 'text-foreground',
             )}
           >
@@ -68,7 +68,7 @@ export default function SplitCardsItem({ image, title, body, tags }: SplitInfoIt
               <Badge
                 key={tag}
                 className={cn(
-                  'transition-colors duration-1000 ease-in-out',
+                  'transition-colors',
                   isInView ? 'bg-background text-foreground' : 'bg-primary text-primary-foreground',
                 )}
               >
