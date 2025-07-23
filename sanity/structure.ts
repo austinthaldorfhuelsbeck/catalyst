@@ -20,6 +20,14 @@ export const structure = (S: any, context: any) =>
             .title('Post')
             .defaultOrdering([{ field: '_createdAt', direction: 'desc' }]), // Default ordering
         ),
+      S.listItem()
+        .title('Projects')
+        .schemaType('project')
+        .child(
+          S.documentTypeList('project')
+            .title('Project')
+            .defaultOrdering([{ field: '_createdAt', direction: 'desc' }]), // Default ordering
+        ),
       orderableDocumentListDeskItem({
         type: 'tag',
         title: 'Tags',

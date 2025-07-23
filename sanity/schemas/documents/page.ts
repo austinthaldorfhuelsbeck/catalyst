@@ -53,6 +53,7 @@ export default defineType({
         { type: 'faqs' },
         { type: 'form-newsletter' },
         { type: 'all-posts' },
+        { type: 'all-projects' },
         { type: 'all-tags' },
         { type: 'featured-post' },
       ],

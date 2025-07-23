@@ -1,23 +1,23 @@
 import SectionContainer from '@/components/ui/section-container';
 import { stegaClean } from 'next-sanity';
-import { fetchSanityPosts } from '@/sanity/lib/fetch';
+import { fetchSanityProjects } from '@/sanity/lib/fetch';
 import { PAGE_QUERYResult } from '@/sanity.types';
 import GridPost from './grid/grid-post';
 
-type AllPostsProps = Extract<
+type AllProjectsProps = Extract<
   NonNullable<NonNullable<PAGE_QUERYResult>['blocks']>[number],
-  { _type: 'all-posts' }
+  { _type: 'all-projects' }
 >;
 
-export default async function AllPosts({ padding, colorVariant }: AllPostsProps) {
+export default async function AllProjects({ padding, colorVariant }: AllProjectsProps) {
   const color = stegaClean(colorVariant);
-  const posts = await fetchSanityPosts();
+  const projects = await fetchSanityProjects();
 
   return (
     <SectionContainer color={color} padding={padding}>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {posts.map((post) => (
-          <GridPost key={post?.slug?.current} post={post} />
+        {projects.map((project) => (
+          <GridPost key={project?.slug?.current} post={project} />
         ))}
       </div>
     </SectionContainer>

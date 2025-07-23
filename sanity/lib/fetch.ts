@@ -14,8 +14,12 @@ import {
   TAG_QUERYResult,
   TAGS_QUERYResult,
   TAGS_SLUGS_QUERYResult,
+  PROJECTS_QUERYResult,
+  PROJECT_QUERYResult,
+  PROJECTS_SLUGS_QUERYResult,
 } from '@/sanity.types';
-import { TAG_QUERY, TAGS_QUERY, TAGS_SLUGS_QUERY } from '../queries/tag';
+import { TAG_QUERY, TAGS_QUERY, TAGS_SLUGS_QUERY } from '@/sanity/queries/tag';
+import { PROJECT_QUERY, PROJECTS_QUERY, PROJECTS_SLUGS_QUERY } from '@/sanity/queries/project';
 
 export const fetchSanityPageBySlug = async ({
   slug,
@@ -69,6 +73,50 @@ export const fetchSanityPostsStaticParams = async (): Promise<POSTS_SLUGS_QUERYR
   });
 
   return data;
+};
+
+export const fetchSanityProjects = async (): Promise<PROJECTS_QUERYResult> => {
+  const { data } = await sanityFetch({
+    query: PROJECTS_QUERY,
+  });
+
+  console.log('All projects', data);
+  return data;
+};
+
+export const fetchSanityProjectBySlug = async ({
+  slug,
+}: {
+  slug: string;
+}): Promise<PROJECT_QUERYResult> => {
+  const { data } = await sanityFetch({
+    query: PROJECT_QUERY,
+    params: { slug },
+  });
+
+  return data;
+};
+
+export const fetchSanityProjectsStaticParams = async (): Promise<PROJECTS_SLUGS_QUERYResult> => {
+  const { data } = await sanityFetch({
+    query: PROJECTS_SLUGS_QUERY,
+    perspective: 'published',
+    stega: false,
+  });
+
+  return data;
+};
+
+export const fetchProjectNavigation = async (currentSlug: string) => {
+  const projects = await fetchSanityProjects();
+  const currentIndex = projects.findIndex((project) => project.slug?.current === currentSlug);
+
+  if (currentIndex === -1) return { previous: null, next: null };
+
+  const previous = currentIndex > 0 ? projects[currentIndex - 1] : null;
+  const next = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
+
+  return { previous, next };
 };
 
 export const fetchSanityTags = async (): Promise<TAGS_QUERYResult> => {

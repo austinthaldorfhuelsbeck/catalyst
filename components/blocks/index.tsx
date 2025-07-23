@@ -12,8 +12,9 @@ import LogoCloud1 from '@/components/blocks/logo-cloud/logo-cloud-1';
 import FAQs from '@/components/blocks/faqs';
 import FormNewsletter from '@/components/blocks/forms/newsletter';
 import AllPosts from '@/components/blocks/all-posts';
-import AllTags from './all-tags';
-import FeaturedPost from './featured-post';
+import AllTags from '@/components/blocks/all-tags';
+import FeaturedPost from '@/components/blocks/featured-post';
+import AllProjects from '@/components/blocks/all-projects';
 
 type Block = NonNullable<NonNullable<PAGE_QUERYResult>['blocks']>[number];
 
@@ -33,6 +34,7 @@ const componentMap: {
   faqs: FAQs,
   'form-newsletter': FormNewsletter,
   'all-posts': AllPosts,
+  'all-projects': AllProjects,
   'all-tags': AllTags,
   'featured-post': FeaturedPost,
 };

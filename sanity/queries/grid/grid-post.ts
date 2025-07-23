@@ -7,6 +7,7 @@ export const gridPostQuery = groq`
     _type,
     _key,
     post->{
+      _type,
       title,
       slug,
       excerpt,

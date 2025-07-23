@@ -9,9 +9,9 @@ export default defineType({
     defineField({
       name: 'post',
       type: 'reference',
-      title: 'Blog Post',
-      description: 'Select a blog post to link to.',
-      to: [{ type: 'post' }],
+      title: 'Content',
+      description: 'Select a post or project to link to.',
+      to: [{ type: 'post' }, { type: 'project' }],
     }),
   ],
   preview: {

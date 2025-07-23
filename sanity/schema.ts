@@ -41,7 +41,9 @@ import newsletter from './schemas/blocks/forms/newsletter';
 import allPosts from './schemas/blocks/all-posts';
 import navItem from './schemas/blocks/navigation/nav-item';
 import allTags from './schemas/blocks/all-tags';
+import allProjects from './schemas/blocks/all-projects';
 import featuredPost from './schemas/blocks/featured-post';
+import project from './schemas/documents/project';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -49,6 +51,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     page,
     post,
     author,
+    project,
     tag,
     faq,
     testimonial,
@@ -84,6 +87,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     faqs,
     newsletter,
     allPosts,
+    allProjects,
     allTags,
     navItem,
     featuredPost,

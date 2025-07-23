@@ -59,6 +59,7 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
 }`;
 
 export const POSTS_QUERY = groq`*[_type == "post" && defined(slug)] | order(_createdAt desc){
+    _type,
     title,
     slug,
     excerpt,

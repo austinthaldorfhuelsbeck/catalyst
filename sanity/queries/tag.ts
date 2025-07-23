@@ -18,6 +18,7 @@ export const TAG_QUERY = groq`*[_type == "tag" && slug.current == $slug][0]{
     },
     "posts": *[_type == "post" && references(^._id)]{
       _id,
+      _type,
       title,
       slug,
       excerpt,

@@ -1,13 +1,10 @@
-import { notFound } from "next/navigation";
-import Breadcrumbs from "@/components/ui/breadcrumbs";
-import PostHero from "@/components/blocks/post-hero";
-import { BreadcrumbLink } from "@/types";
-import PortableTextRenderer from "@/components/portable-text-renderer";
-import {
-  fetchSanityPostBySlug,
-  fetchSanityPostsStaticParams,
-} from "@/sanity/lib/fetch";
-import { generatePageMetadata } from "@/sanity/lib/metadata";
+import { notFound } from 'next/navigation';
+import Breadcrumbs from '@/components/ui/breadcrumbs';
+import PostHero from '@/components/blocks/post-hero';
+import { BreadcrumbLink } from '@/types';
+import PortableTextRenderer from '@/components/portable-text-renderer';
+import { fetchSanityPostBySlug, fetchSanityPostsStaticParams } from '@/sanity/lib/fetch';
+import { generatePageMetadata } from '@/sanity/lib/metadata';
 
 export async function generateStaticParams() {
   const posts = await fetchSanityPostsStaticParams();
@@ -17,9 +14,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata(props: {
-  params: Promise<{ slug: string }>;
-}) {
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
   const post = await fetchSanityPostBySlug({ slug: params.slug });
 
@@ -30,9 +25,7 @@ export async function generateMetadata(props: {
   return generatePageMetadata({ page: post, slug: `/blog/${params.slug}` });
 }
 
-export default async function PostPage(props: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function PostPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
   const post = await fetchSanityPostBySlug(params);
 
@@ -43,16 +36,16 @@ export default async function PostPage(props: {
   const links: BreadcrumbLink[] = post
     ? [
         {
-          label: "Home",
-          href: "/",
+          label: 'Home',
+          href: '/',
         },
         {
-          label: "Blog",
-          href: "/blog",
+          label: 'Blog',
+          href: '/posts',
         },
         {
           label: post.title as string,
-          href: "#",
+          href: '#',
         },
       ]
     : [];
