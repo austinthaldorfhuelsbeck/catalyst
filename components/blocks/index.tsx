@@ -16,6 +16,7 @@ import AllTags from '@/components/blocks/all-tags';
 import FeaturedPost from '@/components/blocks/featured-post';
 import AllProjects from '@/components/blocks/all-projects';
 import AllEvents from '@/components/blocks/all-events';
+import FormContact from '@/components/forms/contact';
 
 type Block = NonNullable<NonNullable<PAGE_QUERYResult>['blocks']>[number];
 
@@ -34,6 +35,7 @@ const componentMap: {
   'logo-cloud-1': LogoCloud1,
   faqs: FAQs,
   'form-newsletter': FormNewsletter,
+  'form-contact': FormContact,
   'all-posts': AllPosts,
   'all-projects': AllProjects,
   'all-tags': AllTags,

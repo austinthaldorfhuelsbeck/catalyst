@@ -11,19 +11,19 @@ import SectionContainer from '@/components/ui/section-container';
 
 import useReduceFields from '@/hooks/use-reduce-fields';
 import { PAGE_QUERYResult } from '@/sanity.types';
-import ContactFormField from './contact-form-field';
+import FormContactField from './contact-form-field';
 
-type ContactFormProps = Extract<
+type FormContactProps = Extract<
   NonNullable<NonNullable<PAGE_QUERYResult>['blocks']>[number],
   { _type: 'form-contact' }
 >;
 
-export default function ContactForm({
+export default function FormContact({
   padding,
   colorVariant,
   fields,
   submitButtonText,
-}: ContactFormProps) {
+}: FormContactProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -106,7 +106,7 @@ export default function ContactForm({
           )}
 
           {fields?.map((field) => (
-            <ContactFormField
+            <FormContactField
               key={field.name}
               {...field}
               control={form.control}

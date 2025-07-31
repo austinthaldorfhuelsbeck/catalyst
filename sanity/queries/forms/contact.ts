@@ -4,6 +4,7 @@ import { groq } from 'next-sanity';
 export const formContactQuery = groq`
   _type == "form-contact" => {
     _type,
+    _key,
     padding,
     colorVariant,
     sectionWidth,

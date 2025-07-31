@@ -6,24 +6,24 @@ import { Control, ControllerRenderProps, FieldErrors } from 'react-hook-form';
 import { Textarea } from '@/components/ui/textarea';
 import { PAGE_QUERYResult } from '@/sanity.types';
 
-type ContactForm = Extract<
+type FormContact = Extract<
   NonNullable<NonNullable<PAGE_QUERYResult>['blocks']>[number],
   { _type: 'form-contact' }
 >;
-type ContactFormFieldProps = NonNullable<ContactForm['fields']>[number] & {
+type FormContactFieldProps = NonNullable<FormContact['fields']>[number] & {
   control: Control;
   errors: FieldErrors;
   className?: string;
 };
 
-export default function ContactFormField({
+export default function FormContactField({
   name,
   placeholder,
   type,
   control,
   errors,
   className,
-}: ContactFormFieldProps) {
+}: FormContactFieldProps) {
   if (!name) return null;
 
   const renderField = (fieldType: string, field: ControllerRenderProps) => {
