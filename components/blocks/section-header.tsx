@@ -24,11 +24,10 @@ export default function SectionHeader({
   const color = stegaClean(colorVariant);
 
   return (
-    <SectionContainer color={color} padding={padding}>
+    <SectionContainer color={color} padding={padding} isNarrow={isNarrow}>
       <div
         className={cn(
           align === 'center' ? 'max-w-[48rem] text-center mx-auto' : undefined,
-          isNarrow ? 'max-w-[48rem] mx-auto' : undefined,
           'font-sans',
         )}
       >

@@ -80,7 +80,7 @@ export default function FormContact({
   }
 
   return (
-    <SectionContainer color={colorVariant} padding={padding} className="px-10">
+    <SectionContainer color={colorVariant} padding={padding} className="px-10" isNarrow>
       <Form {...form}>
         <form
           noValidate
