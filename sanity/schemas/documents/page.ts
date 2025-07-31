@@ -55,6 +55,7 @@ export default defineType({
         { type: 'all-posts' },
         { type: 'all-projects' },
         { type: 'all-tags' },
+        { type: 'all-events' },
         { type: 'featured-post' },
       ],
       options: {

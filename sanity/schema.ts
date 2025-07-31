@@ -46,6 +46,7 @@ import featuredPost from './schemas/blocks/featured-post';
 import project from './schemas/documents/project';
 import event from './schemas/documents/event';
 import eventCategory from './schemas/documents/event-category';
+import allEvents from './schemas/blocks/all-events';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -93,6 +94,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     allPosts,
     allProjects,
     allTags,
+    allEvents,
     navItem,
     featuredPost,
   ],

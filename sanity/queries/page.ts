@@ -15,6 +15,7 @@ import { allPostsQuery } from './all-posts';
 import { allTagsQuery } from './all-tags';
 import { featuredPostQuery } from './featured-post';
 import { allProjectsQuery } from './all-projects';
+import { allEventsQuery } from './all-events';
 
 export const PAGE_QUERY = groq`
   *[_type == "page" && slug.current == $slug][0]{
@@ -34,6 +35,7 @@ export const PAGE_QUERY = groq`
       ${allPostsQuery},
       ${allProjectsQuery},
       ${allTagsQuery},
+      ${allEventsQuery},
       ${featuredPostQuery},
     },
     meta_title,

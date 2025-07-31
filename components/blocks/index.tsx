@@ -15,6 +15,7 @@ import AllPosts from '@/components/blocks/all-posts';
 import AllTags from '@/components/blocks/all-tags';
 import FeaturedPost from '@/components/blocks/featured-post';
 import AllProjects from '@/components/blocks/all-projects';
+import AllEvents from '@/components/blocks/all-events';
 
 type Block = NonNullable<NonNullable<PAGE_QUERYResult>['blocks']>[number];
 
@@ -36,6 +37,7 @@ const componentMap: {
   'all-posts': AllPosts,
   'all-projects': AllProjects,
   'all-tags': AllTags,
+  'all-events': AllEvents,
   'featured-post': FeaturedPost,
 };
 
