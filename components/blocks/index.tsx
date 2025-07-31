@@ -16,7 +16,7 @@ import AllTags from '@/components/blocks/all-tags';
 import FeaturedPost from '@/components/blocks/featured-post';
 import AllProjects from '@/components/blocks/all-projects';
 import AllEvents from '@/components/blocks/all-events';
-import FormContact from '@/components/forms/contact';
+import FormContact from '@/components/blocks/forms/contact';
 
 type Block = NonNullable<NonNullable<PAGE_QUERYResult>['blocks']>[number];
 
