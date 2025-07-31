@@ -47,6 +47,7 @@ import project from './schemas/documents/project';
 import event from './schemas/documents/event';
 import eventCategory from './schemas/documents/event-category';
 import allEvents from './schemas/blocks/all-events';
+import contactForm from './schemas/blocks/forms/contact';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -97,5 +98,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     allEvents,
     navItem,
     featuredPost,
+    contactForm,
   ],
 };

@@ -16,6 +16,7 @@ import { allTagsQuery } from './all-tags';
 import { featuredPostQuery } from './featured-post';
 import { allProjectsQuery } from './all-projects';
 import { allEventsQuery } from './all-events';
+import { formContactQuery } from './forms/contact';
 
 export const PAGE_QUERY = groq`
   *[_type == "page" && slug.current == $slug][0]{
@@ -32,6 +33,7 @@ export const PAGE_QUERY = groq`
       ${logoCloud1Query},
       ${faqsQuery},
       ${formNewsletterQuery},
+      ${formContactQuery},
       ${allPostsQuery},
       ${allProjectsQuery},
       ${allTagsQuery},
