@@ -1,50 +1,50 @@
 import { BreadcrumbLink } from '@/types';
 import { notFound } from 'next/navigation';
-import PostHero from '@/app/(main)/posts/post-hero';
 import Breadcrumbs from '@/components/ui/breadcrumbs';
 import { generatePageMetadata } from '@/sanity/lib/metadata';
 import PortableTextRenderer from '@/components/portable-text-renderer';
-import { fetchSanityPostBySlug, fetchSanityPostsStaticParams } from '@/sanity/lib/fetch';
+import { fetchSanityEventBySlug, fetchSanityEventsStaticParams } from '@/sanity/lib/fetch';
+import PreviewCard from '@/components/preview-card';
 
 export async function generateStaticParams() {
-  const posts = await fetchSanityPostsStaticParams();
+  const events = await fetchSanityEventsStaticParams();
 
-  return posts.map((post) => ({
-    slug: post.slug?.current,
+  return events.map((event) => ({
+    slug: event.slug?.current,
   }));
 }
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
-  const post = await fetchSanityPostBySlug({ slug: params.slug });
+  const event = await fetchSanityEventBySlug({ slug: params.slug });
 
-  if (!post) {
+  if (!event) {
     notFound();
   }
 
-  return generatePageMetadata({ page: post, slug: `/blog/${params.slug}` });
+  return generatePageMetadata({ page: event, slug: `/events/${params.slug}` });
 }
 
-export default async function PostPage(props: { params: Promise<{ slug: string }> }) {
+export default async function EventPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
-  const post = await fetchSanityPostBySlug(params);
+  const event = await fetchSanityEventBySlug(params);
 
-  if (!post) {
+  if (!event) {
     notFound();
   }
 
-  const links: BreadcrumbLink[] = post
+  const links: BreadcrumbLink[] = event
     ? [
         {
           label: 'Home',
           href: '/',
         },
         {
-          label: 'Blog',
-          href: '/posts',
+          label: 'Events',
+          href: '/events',
         },
         {
-          label: post.title as string,
+          label: event.title as string,
           href: '#',
         },
       ]
@@ -55,8 +55,9 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
       <div className="container py-16 xl:py-20">
         <article className="max-w-3xl mx-auto">
           <Breadcrumbs links={links} />
-          <PostHero {...post} />
-          {post.body && <PortableTextRenderer value={post.body} />}
+          <PreviewCard {...event} eventRegistration />
+          <hr className="my-4 md:my-6 border-primary/30" />
+          {event.body && <PortableTextRenderer value={event.body} />}
         </article>
       </div>
     </section>

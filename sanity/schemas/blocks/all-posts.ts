@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineType } from 'sanity';
 import { Newspaper } from 'lucide-react';
 import { stylingFields } from './shared/styling-fields';
 

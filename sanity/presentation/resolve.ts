@@ -1,40 +1,64 @@
-import {
-  defineLocations,
-  defineDocuments,
-  PresentationPluginOptions,
-} from "sanity/presentation";
+import { defineLocations, defineDocuments, PresentationPluginOptions } from 'sanity/presentation';
 
-export const resolve: PresentationPluginOptions["resolve"] = {
+export const resolve: PresentationPluginOptions['resolve'] = {
   locations: {
     // Add more locations for other post types
     post: defineLocations({
       select: {
-        title: "title",
-        slug: "slug.current",
+        title: 'title',
+        slug: 'slug.current',
       },
       resolve: (doc) => ({
         locations: [
           {
-            title: doc?.title || "Untitled",
-            href: `/blog/${doc?.slug}`,
+            title: doc?.title || 'Untitled',
+            href: `/posts/${doc?.slug}`,
           },
-          { title: "Blog", href: `/blog` },
+          { title: 'Blog', href: `/posts` },
         ],
       }),
     }),
   },
   mainDocuments: defineDocuments([
     {
-      route: "/",
+      route: '/',
       filter: `_type == 'page' && slug.current == 'index'`,
     },
     {
-      route: "/:slug",
+      route: '/:slug',
       filter: `_type == 'page' && slug.current == $slug`,
     },
     {
-      route: "/blog/:slug",
+      route: '/posts',
+      filter: `_type == 'post'`,
+    },
+    {
+      route: '/posts/:slug',
       filter: `_type == 'post' && slug.current == $slug`,
+    },
+    {
+      route: '/projects',
+      filter: `_type == 'project'`,
+    },
+    {
+      route: '/projects/:slug',
+      filter: `_type == 'project' && slug.current == $slug`,
+    },
+    {
+      route: '/events',
+      filter: `_type == 'event'`,
+    },
+    {
+      route: '/events/:slug',
+      filter: `_type == 'event' && slug.current == $slug`,
+    },
+    {
+      route: '/tags',
+      filter: `_type == 'tag'`,
+    },
+    {
+      route: '/tags/:slug',
+      filter: `_type == 'tag' && slug.current == $slug`,
     },
   ]),
 };

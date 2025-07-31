@@ -3,7 +3,7 @@ import SectionContainer from '@/components/ui/section-container';
 import { stegaClean } from 'next-sanity';
 
 import { PAGE_QUERYResult } from '@/sanity.types';
-import TagLine from '../ui/tag-line';
+import TagLine from '@/components/ui/tag-line';
 
 type SectionHeaderProps = Extract<
   NonNullable<NonNullable<PAGE_QUERYResult>['blocks']>[number],
@@ -12,7 +12,7 @@ type SectionHeaderProps = Extract<
 
 export default function SectionHeader({
   padding,
-  colorVariant,
+  colorVariant = 'background',
   sectionWidth = 'default',
   stackAlign = 'left',
   tagLine,

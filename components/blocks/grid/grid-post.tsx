@@ -2,8 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import { ChevronRight } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { PAGE_QUERYResult, ColorVariant } from '@/sanity.types';
+import { PAGE_QUERYResult } from '@/sanity.types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Tag from '@/components/ui/tag';
@@ -15,11 +14,11 @@ type GridColumn = NonNullable<NonNullable<GridRow['columns']>>[number];
 type GridPost = Extract<GridColumn, { _type: 'grid-post' }>;
 type Post = NonNullable<NonNullable<GridPost['post']>>;
 interface PostWithType extends Omit<Post, '_type' | '_key'> {
-  _type: 'post' | 'project';
+  _type: 'post' | 'project' | 'event';
 }
 
 interface GridPostProps extends Omit<NonNullable<GridPost>, '_type' | '_key' | 'post'> {
-  post: PostWithType;
+  post: PostWithType | null;
 }
 
 export default function GridPost({ post }: GridPostProps) {

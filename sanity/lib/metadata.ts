@@ -1,5 +1,7 @@
 import { urlFor } from '@/sanity/lib/image';
 import {
+  EVENT_CATEGORY_QUERYResult,
+  EVENT_QUERYResult,
   PAGE_QUERYResult,
   POST_QUERYResult,
   PROJECT_QUERYResult,
@@ -11,7 +13,13 @@ export function generatePageMetadata({
   page,
   slug,
 }: {
-  page: PAGE_QUERYResult | POST_QUERYResult | PROJECT_QUERYResult | TAG_QUERYResult;
+  page:
+    | PAGE_QUERYResult
+    | POST_QUERYResult
+    | PROJECT_QUERYResult
+    | TAG_QUERYResult
+    | EVENT_CATEGORY_QUERYResult
+    | EVENT_QUERYResult;
   slug: string;
 }) {
   return {

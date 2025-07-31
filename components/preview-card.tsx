@@ -8,7 +8,10 @@ import { urlFor } from '@/sanity/lib/image';
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
 
-type PreviewCardProps = NonNullable<PREVIEW_CARD_QUERYResult>;
+type PreviewCardProps = Omit<NonNullable<PREVIEW_CARD_QUERYResult>, '_type'> & {
+  _type: 'post' | 'project' | 'event';
+  eventRegistration?: boolean;
+};
 
 export default function PreviewCard({
   _type,
@@ -17,8 +20,11 @@ export default function PreviewCard({
   image,
   slug,
   tags,
+  eventRegistration = false,
 }: PreviewCardProps) {
-  const href = `${pluralize(_type)}/${slug?.current}`;
+  const href = eventRegistration
+    ? `/events/${slug?.current}/register`
+    : `/${pluralize(_type)}/${slug?.current}`;
 
   return (
     <Card className="flex flex-col md:flex-row hover:border-primary group">
@@ -39,7 +45,7 @@ export default function PreviewCard({
           )}
           <Link href={href}>
             <Button size="sm" variant="outline">
-              Read more
+              {eventRegistration ? 'Register now' : 'Read more'}
               <ChevronRight className="text-border group-hover:text-primary" size={24} />
             </Button>
           </Link>

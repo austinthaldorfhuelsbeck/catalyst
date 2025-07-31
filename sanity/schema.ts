@@ -44,6 +44,8 @@ import allTags from './schemas/blocks/all-tags';
 import allProjects from './schemas/blocks/all-projects';
 import featuredPost from './schemas/blocks/featured-post';
 import project from './schemas/documents/project';
+import event from './schemas/documents/event';
+import eventCategory from './schemas/documents/event-category';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -52,6 +54,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     post,
     author,
     project,
+    event,
+    eventCategory,
     tag,
     faq,
     testimonial,

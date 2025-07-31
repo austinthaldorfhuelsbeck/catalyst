@@ -4,6 +4,11 @@ import { NAVIGATION_QUERY } from '@/sanity/queries/navigation';
 import { SETTINGS_QUERY } from '@/sanity/queries/settings';
 import { POST_QUERY, POSTS_QUERY, POSTS_SLUGS_QUERY } from '@/sanity/queries/post';
 import {
+  EVENT_CATEGORY_QUERY,
+  EVENT_CATEGORIES_QUERY,
+  EVENT_CATEGORIES_SLUGS_QUERY,
+} from '@/sanity/queries/event-category';
+import {
   PAGE_QUERYResult,
   PAGES_SLUGS_QUERYResult,
   POST_QUERYResult,
@@ -17,9 +22,16 @@ import {
   PROJECTS_QUERYResult,
   PROJECT_QUERYResult,
   PROJECTS_SLUGS_QUERYResult,
+  EVENT_CATEGORIES_QUERYResult,
+  EVENT_CATEGORY_QUERYResult,
+  EVENT_CATEGORIES_SLUGS_QUERYResult,
+  EVENT_QUERYResult,
+  EVENTS_QUERYResult,
+  EVENTS_SLUGS_QUERYResult,
 } from '@/sanity.types';
 import { TAG_QUERY, TAGS_QUERY, TAGS_SLUGS_QUERY } from '@/sanity/queries/tag';
 import { PROJECT_QUERY, PROJECTS_QUERY, PROJECTS_SLUGS_QUERY } from '@/sanity/queries/project';
+import { EVENTS_QUERY, EVENT_QUERY, EVENTS_SLUGS_QUERY } from '@/sanity/queries/event';
 
 export const fetchSanityPageBySlug = async ({
   slug,
@@ -143,6 +155,69 @@ export const fetchSanityTagBySlug = async ({
 export const fetchSanityTagsStaticParams = async (): Promise<TAGS_SLUGS_QUERYResult> => {
   const { data } = await sanityFetch({
     query: TAGS_SLUGS_QUERY,
+    perspective: 'published',
+    stega: false,
+  });
+
+  return data;
+};
+
+export const fetchSanityEventCategories = async (): Promise<EVENT_CATEGORIES_QUERYResult> => {
+  const { data } = await sanityFetch({
+    query: EVENT_CATEGORIES_QUERY,
+  });
+
+  return data;
+};
+
+export const fetchSanityEventCategoryBySlug = async ({
+  slug,
+}: {
+  slug: string;
+}): Promise<EVENT_CATEGORY_QUERYResult> => {
+  const { data } = await sanityFetch({
+    query: EVENT_CATEGORY_QUERY,
+    params: { slug },
+  });
+
+  return data;
+};
+
+export const fetchSanityEventCategoriesStaticParams =
+  async (): Promise<EVENT_CATEGORIES_SLUGS_QUERYResult> => {
+    const { data } = await sanityFetch({
+      query: EVENT_CATEGORIES_SLUGS_QUERY,
+      perspective: 'published',
+      stega: false,
+    });
+
+    return data;
+  };
+
+export const fetchSanityEvents = async (): Promise<EVENTS_QUERYResult> => {
+  const { data } = await sanityFetch({
+    query: EVENTS_QUERY,
+  });
+
+  return data;
+};
+
+export const fetchSanityEventBySlug = async ({
+  slug,
+}: {
+  slug: string;
+}): Promise<EVENT_QUERYResult> => {
+  const { data } = await sanityFetch({
+    query: EVENT_QUERY,
+    params: { slug },
+  });
+
+  return data;
+};
+
+export const fetchSanityEventsStaticParams = async (): Promise<EVENTS_SLUGS_QUERYResult> => {
+  const { data } = await sanityFetch({
+    query: EVENTS_SLUGS_QUERY,
     perspective: 'published',
     stega: false,
   });

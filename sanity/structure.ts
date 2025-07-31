@@ -28,6 +28,14 @@ export const structure = (S: any, context: any) =>
             .title('Project')
             .defaultOrdering([{ field: '_createdAt', direction: 'desc' }]), // Default ordering
         ),
+      S.listItem()
+        .title('Events')
+        .schemaType('event')
+        .child(
+          S.documentTypeList('event')
+            .title('Event')
+            .defaultOrdering([{ field: '_createdAt', direction: 'desc' }]), // Default ordering
+        ),
       orderableDocumentListDeskItem({
         type: 'tag',
         title: 'Tags',
@@ -39,6 +47,13 @@ export const structure = (S: any, context: any) =>
         type: 'author',
         title: 'Authors',
         icon: User,
+        S,
+        context,
+      }),
+      orderableDocumentListDeskItem({
+        type: 'event-category',
+        title: 'Event Categories',
+        icon: ListCollapse,
         S,
         context,
       }),

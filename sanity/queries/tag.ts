@@ -35,7 +35,46 @@ export const TAG_QUERY = groq`*[_type == "tag" && slug.current == $slug][0]{
         slug,
         color
       }
-    }
+    },
+    "projects": *[_type == "project" && references(^._id)]{
+      _id,
+      _type,
+      title,
+      slug,
+      excerpt,
+      image{
+        ${imageQuery}
+      },
+      tags[]->{
+        _id,
+        title,
+        slug,
+        color
+      }
+    },
+    "events": *[_type == "event" && references(^._id)]{
+      _id,
+      _type,
+      title,
+      slug,
+      date,
+      location,
+      category->{
+        title,
+        slug,
+        color,
+      },
+      image{
+        ${imageQuery}
+      },
+      excerpt,
+      tags[]->{
+        _id,
+        title,
+        slug,
+        color
+      }
+    },
   }
 `;
 

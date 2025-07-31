@@ -1,8 +1,10 @@
 import { TAG_QUERYResult } from '@/sanity.types';
 import { Badge } from '@/components/ui/badge';
-import PortableTextRenderer from '@/components/portable-text-renderer';
 
-type TagHeroProps = NonNullable<TAG_QUERYResult>;
+type TagHeroProps = Omit<
+  NonNullable<TAG_QUERYResult>,
+  'posts' | 'events' | 'projects' | 'meta_title' | 'meta_description' | 'ogImage' | 'noindex'
+>;
 
 export default function TagHero({ title, color, body }: TagHeroProps) {
   return (
